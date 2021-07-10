@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:18:59 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:58:45 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	main(int argc, char *argv[])
 	int	pid;
 
 	if (argc != 3)
-		return (EXIT_FAILURE);
+		ft_exit(EXIT_FAILURE, "Invalid argument.\n"
+			"./client <Server PID> <String to send>");
 	if (!ft_atoi_strict(argv[1], &pid))
-		return (EXIT_FAILURE);
+		ft_exit(EXIT_FAILURE, "Unparsable server pid.");
 	context_register(kClient);
 	context_set_data((pid_t)pid, argv[2], ft_strlen(argv[2]) + 1);
 	while (TRUE)
