@@ -6,13 +6,14 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 21:50:30 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/10 23:00:27 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
 # include <stddef.h>
+# include <signal.h>
 # define TRUE 1
 # define FALSE 0
 # ifndef FRAGMENT_SIZE
@@ -30,49 +31,13 @@ enum	e_mode
 	kServer
 };
 
-/*
-** 1. Client -> Server
-**     kOp_Data | Data[0]
-**
-** 2. Server -> Client
-**     kOp_Ack | Data[0]
-**
-** 3-1. Client -> Server (Retransmission) (If Data is not delivered properly)
-**     kRetrans | Data[0]
-**
-** 3-2. Server -> Client
-**     kOp_Ack | Data[0]
-**
-** 4-1. Client -> Server (Next Data)
-**     kOp_Data | Data[1]
-**
-** 4-2. Server -> Client (Next Data Ack)
-**     kOp_Ack | Data[1]
-**
-**   ...
-*/
-
-enum	e_op
-{
-	kOp_Data,
-	kOp_Retrans,
-	kOp_Ack
-};
-
-typedef struct s_data
-{
-	char	op;
-	char	dat;
-}			t_data;
-
 typedef struct s_context
 {
 	int		mode;
-	int		opponent;
-	char	*content;
+	pid_t	opponent;
+	char	*data;
+	int		data_len;
 	int		data_idx;
-	t_data	data;
-	t_data	last;
 	int		timeout;
 }			t_context;
 
@@ -138,7 +103,7 @@ t_bool			ft_atoi_strict(const char *str, int *pvalue);
 **  ===========================================
 */
 
-t_bool			buffer_append(char **pcontent, char ch);
+t_bool			buffer_expand(char **pdata, int current_len, int desired_len);
 
 /*
 **  ===========================================
@@ -146,8 +111,8 @@ t_bool			buffer_append(char **pcontent, char ch);
 **  ===========================================
 */
 
-void			context_register(int mode, int op, char *content);
-void			context_send(t_data data);
+void			context_register(int mode);
+void			context_set_data(pid_t opponent, void *data, int len);
 
 /*
 **  ===========================================
@@ -157,7 +122,7 @@ void			context_send(t_data data);
 
 void			context_reset(t_context *ctx, int opponent);
 void			context_append(t_context *ctx, int signal);
-t_bool			context_is_filled(t_context *ctx);
+t_bool			context_is_finished_receiving(t_context *ctx);
 
 /*
 **  ===========================================

@@ -6,40 +6,25 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:12:25 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 21:24:22 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/10 23:49:09 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include <stdlib.h>
 
-static t_bool	ensure_buffer(char **pcontent)
+t_bool	buffer_expand(char **pdata, int current_len, int desired_len)
 {
-	int		len;
 	char	*new_buffer;
 
-	if (*pcontent == NULL)
-		len = 0;
-	else
-		len = ft_strlen(*pcontent);
-	new_buffer = malloc(len + sizeof(char) + sizeof(char));
+	if (desired_len <= current_len)
+		return (TRUE);
+	new_buffer = malloc(desired_len);
 	if (!new_buffer)
 		return (FALSE);
-	ft_memcpy(new_buffer, *pcontent, len);
-	new_buffer[len] = '\0';
-	free(*pcontent);
-	*pcontent = new_buffer;
-	return (TRUE);
-}
-
-t_bool	buffer_append(char **pcontent, char ch)
-{
-	int	len;
-
-	if (!ensure_buffer(pcontent))
-		return (FALSE);
-	len = ft_strlen(*pcontent);
-	(*pcontent)[len + 0] = ch;
-	(*pcontent)[len + 1] = '\0';
+	new_buffer[desired_len - 1] = '\0';
+	ft_memcpy(new_buffer, *pdata, current_len);
+	free(*pdata);
+	*pdata = new_buffer;
 	return (TRUE);
 }

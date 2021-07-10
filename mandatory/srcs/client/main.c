@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 21:51:10 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/10 23:32:01 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	if (!ft_atoi_strict(argv[1], &pid))
 		return (EXIT_FAILURE);
-	context_register(kClient, pid, argv[2]);
-	context_send((t_data){kOp_Data, argv[2][0]});
+	context_register(kClient);
+	context_set_data((pid_t)pid, argv[2], ft_strlen(argv[2]) + 1);
 	while (TRUE)
-	{
-		usleep(10000);
-	}
+		sleep(-1);
 	return 0;
 }

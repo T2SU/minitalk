@@ -6,13 +6,14 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 22:01:45 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/10 23:50:47 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include <signal.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 static t_context	*get_context(void)
 {
@@ -21,54 +22,67 @@ static t_context	*get_context(void)
 	return (&ctx);
 }
 
-static void	handle_signal(int signal, siginfo_t *si, void *uctx)
+static void	handle_server(int signal, siginfo_t *si, void *uctx)
 {
 	t_context	*ctx;
 	
 	(void)uctx;
 	ctx = get_context();
-	if (ctx->opponent > 0 && ctx->opponent != si->si_pid)
-		context_reset(ctx, ctx->opponent);
+	if (ctx->opponent == 0)
+		context_reset(ctx, si->si_pid);
 	context_append(ctx, signal);
-	if (!context_is_filled(ctx))
+	kill(ctx->opponent, SIGUSR1);
+	if (!context_is_finished_receiving(ctx))
 		return ;
 	context_process(ctx);
 }
 
-void	context_register(int mode, int op, char *content)
+static void	handle_client(int signal, siginfo_t *si, void *uctx)
+{
+	t_context	*ctx;
+	char		temp;
+
+	(void)uctx;
+	ctx = get_context();
+	if (signal != SIGUSR1 || (si != NULL && ctx->opponent != si->si_pid))
+		return ;
+	temp = ctx->data[ctx->data_idx / 8];
+	temp = (temp >> (ctx->data_idx & 7)) & 0x01;
+	if (temp == 1)
+		kill(ctx->opponent, SIGUSR1);
+	else
+		kill(ctx->opponent, SIGUSR2);
+	(ctx->data_idx)++;
+	if (ctx->data_idx / 8 == ctx->data_len)
+		context_process(ctx);
+}
+
+void	context_register(int mode)
 {
 	t_context			*ctx;
 	struct sigaction	sa;
 
 	ctx = get_context();
 	ctx->mode = mode;
-	ctx->opponent = op;
-	ctx->content = content;
+	context_reset(ctx, 0);
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
-	sa.sa_sigaction = &handle_signal;
+	if (mode == kServer)
+		sa.sa_sigaction = &handle_server;
+	else
+		sa.sa_sigaction = &handle_client;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 }
 
-void	context_send(t_data data)
+void	context_set_data(pid_t opponent, void *data, int len)
 {
-	const char	*dat = (char *)&data;
 	t_context	*ctx;
-	size_t		i;
-	char		temp;
 
 	ctx = get_context();
-	ctx->data = data;
-	i = 0;
-	while (i < 8 * sizeof(t_data))
-	{
-		temp = dat[i / 8];
-		temp = (temp >> (i & 7)) & 0x01;
-		if (temp == 1)
-			kill(ctx->opponent, SIGUSR1);
-		else
-			kill(ctx->opponent, SIGUSR2);
-		i++;
-	}
+	ctx->data_idx = 0;
+	ctx->data_len = len;
+	ctx->data = (char *)data;
+	ctx->opponent = opponent;
+	handle_client(SIGUSR1, NULL, NULL);
 }
