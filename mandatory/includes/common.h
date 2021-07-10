@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:31:48 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:41:01 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include <signal.h>
 # define TRUE 1
 # define FALSE 0
-# ifndef FRAGMENT_SIZE
-#  define FRAGMENT_SIZE 32
-# endif
-# ifndef RTO
-#  define RTO 100
-# endif
 # ifndef VERBOSE
 #  define VERBOSE 0
 # endif
