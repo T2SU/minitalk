@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:56:39 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 01:00:20 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 01:19:35 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	context_process(t_context *ctx)
 {
-	const pid_t	pid = ctx->opponent;;
+	const pid_t	pid = ctx->opponent;
 
 	if (ctx->mode == kClient)
 	{
@@ -26,7 +26,7 @@ void	context_process(t_context *ctx)
 		ctx->data = NULL;
 		context_register(kServer);
 		ctx->opponent = pid;
-		ctx->data_expected_len = 4;
+		ctx->data_expected_len = sizeof(unsigned int);
 		kill(pid, SIGUSR1);
 	}
 	else
@@ -34,6 +34,7 @@ void	context_process(t_context *ctx)
 		ft_putstr("Received crc32: ");
 		ft_putnbr(*(int *)(&ctx->data[0]));
 		ft_putstr("\n");
+		//kill(pid, SIGUSR1);
 		ft_exit(EXIT_SUCCESS, NULL);
 	}
 }
