@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/11 02:33:32 by smun             ###   ########.fr        #
+#    Updated: 2021/07/11 02:40:25 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ clean :
 	rm -rf $(COMMON_FILES_OBJ) $(SVR_FILES_OBJ) $(CLI_FILES_OBJ)
 
 fclean : clean
-	rm -rf $(NAME_CLIENT) $(NAME_CLIENT)
+	rm -rf $(NAME_CLIENT) $(NAME_SERVER)
 
 re : fclean all
 
