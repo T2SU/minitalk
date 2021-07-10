@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/10 18:41:15 by smun             ###   ########.fr        #
+#    Updated: 2021/07/10 19:49:20 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ INC = -I./includes
 
 COMMON_FILES = \
 	srcs/common/ft_putstr \
+	srcs/common/ft_putnbr \
 	srcs/common/ft_strlen \
 	srcs/common/ft_crc32 \
 	srcs/common/context_process \

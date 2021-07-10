@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 19:53:01 by smun             ###   ########.fr       */
+/*   Created: 2021/07/10 17:07:08 by smun              #+#    #+#             */
+/*   Updated: 2021/07/10 19:48:18 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include <unistd.h>
 
-int	main(void)
+static int	ft_abs(int i)
 {
-	context_register();
-	ft_putstr("Server PID:");
-	ft_putnbr(getpid());
-	ft_putstr("\n");
-	while (TRUE)
-		sleep(-1);
-	return 0;
+	if (i < 0)
+		return (-i);
+	return (i);
+}
+
+static void	put_step(int n)
+{
+	char	c;
+
+	if (n / 10)
+		put_step(n / 10);
+	c = '0' + ft_abs(n % 10);
+	write(STDOUT_FILENO, &c, 1);
+}
+
+void	ft_putnbr(const int nb)
+{
+	if (nb < 0)
+		write(STDOUT_FILENO, "-", 1);
+	put_step(nb);
 }
