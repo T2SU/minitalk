@@ -5,16 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:35:45 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 18:42:22 by smun             ###   ########.fr       */
+/*   Created: 2021/07/10 21:56:39 by smun              #+#    #+#             */
+/*   Updated: 2021/07/10 21:59:50 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
-#include <signal.h>
+#include <stdlib.h>
 
-t_bool			context_process(const t_data *dat)
+void	context_process(t_context *ctx)
 {
-	(void)dat;
-	return (TRUE);
+	if (ctx->data.op == kOp_Ack && ctx->data.dat == *(ctx->content))
+	{
+		if (ctx->data.dat == '\0')
+			exit(EXIT_SUCCESS);
+		ctx->data.op = kOp_Data;
+		ctx->content++;
+		ctx->data.dat = *(ctx->content);
+	}
+	else
+		ctx->data.op = kOp_Retrans;
+	context_send(ctx->data);
 }

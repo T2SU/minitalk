@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_crc8.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 21:51:10 by smun             ###   ########.fr       */
+/*   Created: 2021/07/10 20:37:05 by smun              #+#    #+#             */
+/*   Updated: 2021/07/10 20:39:10 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
-#include <stdlib.h>
-#include <unistd.h>
 
-int	main(int argc, char *argv[])
+unsigned char	ft_crc8(char *data, int len)
 {
-	int	pid;
+	unsigned char	crc;
+	int				i;
+	int				j;
 
-	if (argc != 3)
-		return (EXIT_FAILURE);
-	if (!ft_atoi_strict(argv[1], &pid))
-		return (EXIT_FAILURE);
-	context_register(kClient, pid, argv[2]);
-	context_send((t_data){kOp_Data, argv[2][0]});
-	while (TRUE)
+	crc = 0xff;
+	i = 0;
+	while (i < len)
 	{
-		usleep(10000);
+		crc ^= (unsigned char)data[i];
+		j = 0;
+		while (j < 8)
+		{
+			if ((crc & 0x80))
+				crc = (unsigned char)((crc << 1) ^ 0x31);
+			else
+				crc <<= 1;
+			j++;
+		}
+		i++;
 	}
-	return 0;
+	return (crc);
 }

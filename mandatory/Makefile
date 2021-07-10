@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/10 19:49:20 by smun             ###   ########.fr        #
+#    Updated: 2021/07/10 22:01:07 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,22 +21,28 @@ endif
 INC = -I./includes
 
 COMMON_FILES = \
+	srcs/common/buffer \
 	srcs/common/ft_putstr \
 	srcs/common/ft_putnbr \
 	srcs/common/ft_strlen \
+	srcs/common/ft_memcpy \
+	srcs/common/ft_crc8 \
 	srcs/common/ft_crc32 \
-	srcs/common/context_process \
-	srcs/common/context_raw
+	srcs/common/ft_atoi_strict \
+	srcs/common/context_raw \
+	srcs/common/context_signal
 COMMON_FILES_SRC = $(addsuffix .c, $(COMMON_FILES))
 COMMON_FILES_OBJ = $(COMMON_FILES_SRC:.c=.o)
 
 SVR_FILES = \
-	srcs/server/main
+	srcs/server/main \
+	srcs/server/context_process
 SVR_FILES_SRC = $(addsuffix .c, $(SVR_FILES))
 SVR_FILES_OBJ = $(SVR_FILES_SRC:.c=.o)
 
 CLI_FILES = \
-	srcs/client/main
+	srcs/client/main \
+	srcs/client/context_process
 CLI_FILES_SRC = $(addsuffix .c, $(CLI_FILES))
 CLI_FILES_OBJ = $(CLI_FILES_SRC:.c=.o)
 
