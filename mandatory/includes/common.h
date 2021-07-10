@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:41:01 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:50:10 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,11 +132,11 @@ void			context_verbose_print_bit(int idx, unsigned char bit);
 
 /*
 **  ===========================================
-**      srcs/client/context_process.c
-**      srcs/server/context_process.c
+**      srcs/client/context_on_finish.c
+**      srcs/server/context_on_finish.c
 **  ===========================================
 */
 
-void			context_process(t_context *ctx);
+void			context_on_finish(t_context *ctx);
 
 #endif

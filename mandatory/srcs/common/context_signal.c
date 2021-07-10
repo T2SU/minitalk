@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:32:49 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:50:10 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	handle_server(int signal, siginfo_t *si, void *uctx)
 	opponent = ctx->opponent;
 	context_append(ctx, signal);
 	if (context_is_finished_receiving(ctx))
-		context_process(ctx);
+		context_on_finish(ctx);
 	else
 		kill(opponent, SIGUSR1);
 }
@@ -54,7 +54,7 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 	temp = (temp >> (ctx->data_idx & 7)) & 0x01;
 	context_verbose_print_bit(ctx->data_idx++, temp);
 	if (ctx->data_idx / 8 == ctx->data_len)
-		context_process(ctx);
+		context_on_finish(ctx);
 	if (temp == 1)
 		kill(pid, SIGUSR1);
 	else

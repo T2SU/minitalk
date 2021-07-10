@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/11 02:40:25 by smun             ###   ########.fr        #
+#    Updated: 2021/07/11 02:50:44 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,13 +37,13 @@ COMMON_FILES_OBJ = $(COMMON_FILES_SRC:.c=.o)
 
 SVR_FILES = \
 	srcs/server/main \
-	srcs/server/context_process
+	srcs/server/context_on_finish
 SVR_FILES_SRC = $(addsuffix .c, $(SVR_FILES))
 SVR_FILES_OBJ = $(SVR_FILES_SRC:.c=.o)
 
 CLI_FILES = \
 	srcs/client/main \
-	srcs/client/context_process
+	srcs/client/context_on_finish
 CLI_FILES_SRC = $(addsuffix .c, $(CLI_FILES))
 CLI_FILES_OBJ = $(CLI_FILES_SRC:.c=.o)
 
