@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:24:23 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:31:48 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # endif
 # ifndef RTO
 #  define RTO 100
+# endif
+# ifndef VERBOSE
+#  define VERBOSE 0
 # endif
 
 typedef int	t_bool;
@@ -124,6 +127,14 @@ void			context_set_data(pid_t opponent, void *data, int len);
 void			context_reset(t_context *ctx, int opponent);
 void			context_append(t_context *ctx, int signal);
 t_bool			context_is_finished_receiving(t_context *ctx);
+
+/*
+**  ===========================================
+**      srcs/common/context_verbose.c
+**  ===========================================
+*/
+
+void			context_verbose_print_bit(int idx, unsigned char bit);
 
 /*
 **  ===========================================

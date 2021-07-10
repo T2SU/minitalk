@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/11 00:08:34 by smun             ###   ########.fr        #
+#    Updated: 2021/07/11 02:33:32 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 # Debug compilation
 ifeq ($(DEBUG),1)
-	CFLAGS += -g
+	CFLAGS += -g -DVERBOSE=1
 endif
 
 INC = -I./includes
@@ -30,7 +30,8 @@ COMMON_FILES = \
 	srcs/common/ft_atoi_strict \
 	srcs/common/ft_exit \
 	srcs/common/context_raw \
-	srcs/common/context_signal
+	srcs/common/context_signal \
+	srcs/common/context_verbose
 COMMON_FILES_SRC = $(addsuffix .c, $(COMMON_FILES))
 COMMON_FILES_OBJ = $(COMMON_FILES_SRC:.c=.o)
 

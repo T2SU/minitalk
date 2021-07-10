@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:20:55 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:32:49 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,7 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 		return ;
 	temp = ctx->data[ctx->data_idx / 8];
 	temp = (temp >> (ctx->data_idx & 7)) & 0x01;
-	ft_putnbr(ctx->data_idx);
-	ft_putstr(": ");
-	if (temp)
-		ft_putstr("1\n");
-	else
-		ft_putstr("0\n");
-	(ctx->data_idx)++;
+	context_verbose_print_bit(ctx->data_idx++, temp);
 	if (ctx->data_idx / 8 == ctx->data_len)
 		context_process(ctx);
 	if (temp == 1)
