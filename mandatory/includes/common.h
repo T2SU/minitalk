@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 00:50:13 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:24:23 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_context
 	int		data_len;
 	int		data_idx;
 	int		data_expected_len;
-	int		timeout;
 }			t_context;
 
 /*

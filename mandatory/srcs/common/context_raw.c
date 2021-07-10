@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:06:50 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:19:36 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:24:30 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 void	context_reset(t_context *ctx, int opponent)
 {
 	ctx->opponent = opponent;
-	ctx->timeout = 0;
 	ctx->data_idx = 0;
 	ctx->data_len = 0;
 	ctx->data_expected_len = -1;
@@ -50,7 +49,6 @@ void	context_append(t_context *ctx, int signal)
 	else
 		ft_putstr("0\n");
 	ctx->data_idx++;
-	ctx->timeout = 0;
 }
 
 t_bool	context_is_finished_receiving(t_context *ctx)
