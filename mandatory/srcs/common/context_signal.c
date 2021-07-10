@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 00:57:30 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:09:52 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,23 @@ static void	handle_server(int signal, siginfo_t *si, void *uctx)
 	context_append(ctx, signal);
 	if (context_is_finished_receiving(ctx))
 		context_process(ctx);
-	kill(opponent, SIGUSR1);
+	else
+		kill(opponent, SIGUSR1);
 }
 
 static void	handle_client(int signal, siginfo_t *si, void *uctx)
 {
+	pid_t		pid;
 	t_context	*ctx;
 	char		temp;
 
 	(void)uctx;
 	ctx = get_context();
-	if (signal != SIGUSR1 || (si != NULL && ctx->opponent != si->si_pid))
+	pid = ctx->opponent;
+	if (signal != SIGUSR1 || (si != NULL && pid != si->si_pid))
 		return ;
 	temp = ctx->data[ctx->data_idx / 8];
 	temp = (temp >> (ctx->data_idx & 7)) & 0x01;
-	if (temp == 1)
-		kill(ctx->opponent, SIGUSR1);
-	else
-		kill(ctx->opponent, SIGUSR2);
 	ft_putnbr(ctx->data_idx);
 	ft_putstr(": ");
 	if (temp)
@@ -62,6 +61,10 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 	(ctx->data_idx)++;
 	if (ctx->data_idx / 8 == ctx->data_len)
 		context_process(ctx);
+	if (temp == 1)
+		kill(pid, SIGUSR1);
+	else
+		kill(pid, SIGUSR2);
 }
 
 void	context_register(int mode)
