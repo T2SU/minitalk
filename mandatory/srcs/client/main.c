@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 23:32:01 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:18:59 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	main(int argc, char *argv[])
 	context_set_data((pid_t)pid, argv[2], ft_strlen(argv[2]) + 1);
 	while (TRUE)
 		sleep(-1);
-	return 0;
+	return (0);
 }

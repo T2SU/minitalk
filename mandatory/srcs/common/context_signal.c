@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:09:52 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:20:55 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	handle_server(int signal, siginfo_t *si, void *uctx)
 {
 	t_context	*ctx;
 	pid_t		opponent;
-	
+
 	(void)uctx;
 	ctx = get_context();
 	if (ctx->opponent == 0)

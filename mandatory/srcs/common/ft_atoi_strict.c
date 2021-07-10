@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 15:16:26 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 21:39:21 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:20:36 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ t_bool	ft_atoi_strict(const char *str, int *pvalue)
 		if (str[i] < '0' || str[i] > '9')
 			return (FALSE);
 		temp = str[i++] - '0';
-		temp = 10 * *pvalue + (neg ? -temp : temp);
+		if (neg)
+			temp = -temp;
+		temp = 10 * *pvalue + temp;
 		if (temp != *pvalue && (temp < *pvalue) != neg)
 			return (FALSE);
 		*pvalue = temp;

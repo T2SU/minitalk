@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:19:41 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 18:42:02 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:19:14 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	make_crc_table(unsigned int *table, int id)
 unsigned int	ft_crc32(const char *mem, int length, unsigned int crc)
 {
 	static unsigned int	table[256];
-	
+
 	if (!table[255])
 		make_crc_table(table, 0xEDB88320);
 	crc = ~crc;

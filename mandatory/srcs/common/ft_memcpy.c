@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:17:50 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 21:19:52 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 02:20:06 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	const unsigned char	*source = (const unsigned char*)src;
+	const unsigned char	*source = (const unsigned char *)src;
 	unsigned char		*dest;
 	size_t				*source_large;
 	size_t				*dest_large;
@@ -22,7 +22,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	if (src || dst)
 	{
-		dest = (unsigned char*)dst;
+		dest = (unsigned char *)dst;
 		i = n % sizeof(size_t);
 		if (i)
 		{
@@ -32,8 +32,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		i = n / sizeof(size_t);
 		if (i)
 		{
-			source_large = (size_t*)source;
-			dest_large = (size_t*)dest;
+			source_large = (size_t *)source;
+			dest_large = (size_t *)dest;
 			while (i--)
 				*(dest_large++) = *(source_large++);
 		}
