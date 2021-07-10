@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 23:50:47 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 00:57:30 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@ static t_context	*get_context(void)
 static void	handle_server(int signal, siginfo_t *si, void *uctx)
 {
 	t_context	*ctx;
+	pid_t		opponent;
 	
 	(void)uctx;
 	ctx = get_context();
 	if (ctx->opponent == 0)
 		context_reset(ctx, si->si_pid);
+	opponent = ctx->opponent;
 	context_append(ctx, signal);
-	kill(ctx->opponent, SIGUSR1);
-	if (!context_is_finished_receiving(ctx))
-		return ;
-	context_process(ctx);
+	if (context_is_finished_receiving(ctx))
+		context_process(ctx);
+	kill(opponent, SIGUSR1);
 }
 
 static void	handle_client(int signal, siginfo_t *si, void *uctx)
@@ -52,6 +53,12 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 		kill(ctx->opponent, SIGUSR1);
 	else
 		kill(ctx->opponent, SIGUSR2);
+	ft_putnbr(ctx->data_idx);
+	ft_putstr(": ");
+	if (temp)
+		ft_putstr("1\n");
+	else
+		ft_putstr("0\n");
 	(ctx->data_idx)++;
 	if (ctx->data_idx / 8 == ctx->data_len)
 		context_process(ctx);

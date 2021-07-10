@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/10 22:01:07 by smun             ###   ########.fr        #
+#    Updated: 2021/07/11 00:08:34 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ COMMON_FILES = \
 	srcs/common/ft_putnbr \
 	srcs/common/ft_strlen \
 	srcs/common/ft_memcpy \
-	srcs/common/ft_crc8 \
 	srcs/common/ft_crc32 \
 	srcs/common/ft_atoi_strict \
+	srcs/common/ft_exit \
 	srcs/common/context_raw \
 	srcs/common/context_signal
 COMMON_FILES_SRC = $(addsuffix .c, $(COMMON_FILES))

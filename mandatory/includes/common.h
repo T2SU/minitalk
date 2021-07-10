@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 23:00:27 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 00:50:13 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_context
 	char	*data;
 	int		data_len;
 	int		data_idx;
+	int		data_expected_len;
 	int		timeout;
 }			t_context;
 
@@ -56,6 +57,7 @@ int				ft_strlen(const char *str);
 */
 
 void			ft_putstr(const char *str);
+void			ft_puterr(const char *str);
 
 /*
 **  ===========================================
@@ -67,11 +69,11 @@ void			ft_putnbr(const int nb);
 
 /*
 **  ===========================================
-**      srcs/common/ft_crc8.c
+**      srcs/common/ft_exit.c
 **  ===========================================
 */
 
-unsigned char	ft_crc8(char *data, int len);
+void			ft_exit(int code, const char *err);
 
 /*
 **  ===========================================
