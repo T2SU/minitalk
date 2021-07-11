@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:18:50 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/11 12:25:04 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	main(void)
 {
 	context_register(kServer);
-	ft_putstr("Server PID:");
+	ft_putstr("Server PID: ");
 	ft_putnbr(getpid());
 	ft_putstr("\n");
 	while (TRUE)
