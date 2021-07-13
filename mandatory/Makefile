@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/13 17:11:55 by smun             ###   ########.fr        #
+#    Updated: 2021/07/13 18:20:22 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ COMMON_FILES = \
 	srcs/common/context_raw \
 	srcs/common/context_signal \
 	srcs/common/context_verbose \
-	srcs/common/context_retrans \
 	srcs/common/context_pid
 COMMON_FILES_SRC = $(addsuffix .c, $(COMMON_FILES))
 COMMON_FILES_OBJ = $(COMMON_FILES_SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 17:07:29 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 18:19:38 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ int	main(void)
 	ft_putnbr(getpid());
 	ft_putstr("\n");
 	while (TRUE)
-	{
-		ft_kill(getpid(), SIGUSR1);
-		usleep(500 * 1000);
-	}
+		sleep(-1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 17:22:55 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 18:19:53 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # define FALSE 0
 # ifndef VERBOSE
 #  define VERBOSE 0
-# endif
-# ifndef RTO
-#  define RTO 3
 # endif
 
 typedef int	t_bool;
@@ -131,7 +128,6 @@ void			context_retrans(t_context *ctx);
 */
 
 t_bool			context_is_opponent_pid(t_context *ctx, siginfo_t *si);
-t_bool			is_self_pid(siginfo_t *si);
 
 /*
 **  ===========================================

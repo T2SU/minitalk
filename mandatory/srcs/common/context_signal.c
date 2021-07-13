@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 17:55:19 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 18:20:12 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ static void	handle_server(int signal, siginfo_t *si, void *uctx)
 
 	(void)uctx;
 	ctx = get_context();
-	if (is_self_pid(si))
-	{
-		if (ctx->opponent != 0)
-			context_retrans(ctx);
-		return ;
-	}
 	ctx->timeout = 0;
 	if (ctx->opponent == 0)
 		context_reset(ctx, si->si_pid);
@@ -60,7 +54,7 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 	(void)uctx;
 	ctx = get_context();
 	pid = ctx->opponent;
-	if (is_self_pid(si) || !context_is_opponent_pid(ctx, si))
+	if (!context_is_opponent_pid(ctx, si))
 		return ;
 	ctx->timeout = 0;
 	if (signal == SIGUSR2)
