@@ -36,7 +36,6 @@ typedef struct s_context
 	int		data_len;
 	int		data_idx;
 	int		data_expected_len;
-	int		timeout;
 }			t_context;
 
 /*

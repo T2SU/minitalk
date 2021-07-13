@@ -21,7 +21,6 @@ void	context_reset(t_context *ctx, int opponent)
 	ctx->data_idx = 0;
 	ctx->data_len = 0;
 	ctx->data_expected_len = -1;
-	ctx->timeout = 0;
 	free(ctx->data);
 	ctx->data = NULL;
 }
