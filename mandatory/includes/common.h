@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:50:10 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 14:48:59 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,14 @@ void			*ft_memcpy(void *dst, const void *src, size_t n);
 */
 
 t_bool			ft_atoi_strict(const char *str, int *pvalue);
+
+/*
+**  ===========================================
+**      srcs/common/ft_kill.c
+**  ===========================================
+*/
+
+void			ft_kill(const pid_t pid, int signal);
 
 /*
 **  ===========================================

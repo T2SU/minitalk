@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 14:13:20 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 14:54:29 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ static void	handle_server(int signal, siginfo_t *si, void *uctx)
 	if (ctx->opponent == 0)
 		context_reset(ctx, si->si_pid);
 	opponent = ctx->opponent;
+	if (opponent != si->si_pid)
+		return ;
 	context_append(ctx, signal);
 	usleep(50);
 	if (context_is_finished_receiving(ctx))
 		context_on_finish(ctx);
 	else
-		kill(opponent, SIGUSR1);
+		ft_kill(opponent, SIGUSR1);
 }
 
 static void	handle_client(int signal, siginfo_t *si, void *uctx)
@@ -58,9 +60,9 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 	if (ctx->data_idx / 8 == ctx->data_len)
 		context_on_finish(ctx);
 	if (temp == 1)
-		kill(pid, SIGUSR1);
+		ft_kill(pid, SIGUSR1);
 	else
-		kill(pid, SIGUSR2);
+		ft_kill(pid, SIGUSR2);
 }
 
 void	context_register(int mode)

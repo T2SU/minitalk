@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/13 14:21:21 by smun             ###   ########.fr        #
+#    Updated: 2021/07/13 14:52:03 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ COMMON_FILES = \
 	srcs/common/ft_crc32_bonus \
 	srcs/common/ft_atoi_strict_bonus \
 	srcs/common/ft_exit_bonus \
+	srcs/common/ft_kill_bonus \
 	srcs/common/context_raw_bonus \
 	srcs/common/context_signal_bonus \
 	srcs/common/context_verbose_bonus
