@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/13 15:37:09 by smun             ###   ########.fr        #
+#    Updated: 2021/07/13 16:19:44 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ COMMON_FILES = \
 	srcs/common/ft_exit \
 	srcs/common/ft_kill \
 	srcs/common/ft_bit \
+	srcs/common/title \
 	srcs/common/context_raw \
 	srcs/common/context_signal \
 	srcs/common/context_verbose

@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 15:55:05 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 16:19:16 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,14 @@ void			ft_kill(const pid_t pid, int signal);
 
 char			ft_getbit(const char *data, int bitindex);
 void			ft_setbit(char *data, int bitindex, char bit);
+
+/*
+**  ===========================================
+**      srcs/common/title.c
+**  ===========================================
+*/
+
+void			print_title(int mode);
 
 /*
 **  ===========================================

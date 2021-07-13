@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:56:39 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 15:55:25 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 16:03:28 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 
 static void	phase1_on_client_finish(t_context *ctx, const pid_t pid)
 {
-	ft_putstr(ctx->data);
-	ft_putstr("\n");
+	ft_putstr("Sent string. switch to receiving crc32...\n");
 	ctx->data = NULL;
 	context_register(kServer);
 	ctx->opponent = pid;

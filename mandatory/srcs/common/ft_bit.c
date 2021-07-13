@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:11:01 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 15:48:51 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 16:13:33 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	ft_getbit(const char *data, int bitindex)
 void	ft_setbit(char *data, int bitindex, char bit)
 {
 	const unsigned char	ubit = (const unsigned char)bit;
-	unsigned char *pdata;
+	unsigned char		*pdata;
 
 	pdata = (unsigned char *)data;
 	pdata[bitindex / 8] |= (unsigned char)(ubit << (bitindex & 7));
