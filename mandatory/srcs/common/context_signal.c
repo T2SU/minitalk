@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/11 02:50:10 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 14:09:47 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <signal.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 static t_context	*get_context(void)
 {
@@ -33,6 +34,7 @@ static void	handle_server(int signal, siginfo_t *si, void *uctx)
 		context_reset(ctx, si->si_pid);
 	opponent = ctx->opponent;
 	context_append(ctx, signal);
+	//usleep(50);
 	if (context_is_finished_receiving(ctx))
 		context_on_finish(ctx);
 	else
