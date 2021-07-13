@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 14:54:29 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 15:01:32 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 		return ;
 	temp = ctx->data[ctx->data_idx / 8];
 	temp = (temp >> (ctx->data_idx & 7)) & 0x01;
-	context_verbose_print_bit(ctx->data_idx++, temp);
+	context_verbose_print_bit((ctx->data_idx)++, temp);
 	if (ctx->data_idx / 8 == ctx->data_len)
 		context_on_finish(ctx);
 	if (temp == 1)
