@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:06:50 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 15:41:47 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 16:55:02 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	context_reset(t_context *ctx, int opponent)
 	ctx->data_idx = 0;
 	ctx->data_len = 0;
 	ctx->data_expected_len = -1;
+	ctx->timeout = 0;
 	free(ctx->data);
 	ctx->data = NULL;
 }

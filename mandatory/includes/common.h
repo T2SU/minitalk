@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 16:19:16 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 17:22:55 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # define FALSE 0
 # ifndef VERBOSE
 #  define VERBOSE 0
+# endif
+# ifndef RTO
+#  define RTO 3
 # endif
 
 typedef int	t_bool;
@@ -36,6 +39,7 @@ typedef struct s_context
 	int		data_len;
 	int		data_idx;
 	int		data_expected_len;
+	int		timeout;
 }			t_context;
 
 /*
@@ -111,6 +115,23 @@ void			ft_kill(const pid_t pid, int signal);
 
 char			ft_getbit(const char *data, int bitindex);
 void			ft_setbit(char *data, int bitindex, char bit);
+
+/*
+**  ===========================================
+**      srcs/common/context_retrans.c
+**  ===========================================
+*/
+
+void			context_retrans(t_context *ctx);
+
+/*
+**  ===========================================
+**      srcs/common/context_pid.c
+**  ===========================================
+*/
+
+t_bool			context_is_opponent_pid(t_context *ctx, siginfo_t *si);
+t_bool			is_self_pid(siginfo_t *si);
 
 /*
 **  ===========================================

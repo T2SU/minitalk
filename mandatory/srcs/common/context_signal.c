@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 16:54:28 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 17:34:29 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,19 @@ static void	handle_server(int signal, siginfo_t *si, void *uctx)
 
 	(void)uctx;
 	ctx = get_context();
+	if (is_self_pid(si))
+	{
+		if (ctx->opponent != 0)
+			context_retrans(ctx);
+		return ;
+	}
+	ctx->timeout = 0;
 	if (ctx->opponent == 0)
 		context_reset(ctx, si->si_pid);
-	opponent = ctx->opponent;
-	if (opponent != si->si_pid)
+	if (!context_is_opponent_pid(ctx, si))
 		return ;
+	opponent = ctx->opponent;
 	context_append(ctx, signal);
-	usleep(50);
 	if (context_is_finished_receiving(ctx))
 		context_on_finish(ctx);
 	else
@@ -52,8 +58,11 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 	(void)uctx;
 	ctx = get_context();
 	pid = ctx->opponent;
-	if (signal != SIGUSR1 || (si != NULL && pid != si->si_pid))
+	if (is_self_pid(si) || !context_is_opponent_pid(ctx, si))
 		return ;
+	ctx->timeout = 0;
+	if (signal == SIGUSR2)
+		(ctx->data_idx)--;
 	bit = ft_getbit(ctx->data, ctx->data_idx);
 	context_verbose_print_bit((ctx->data_idx)++, bit);
 	if (ctx->data_idx / 8 == ctx->data_len)

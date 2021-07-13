@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:04 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 16:19:22 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 17:07:25 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	main(int argc, char *argv[])
 	context_register(kClient);
 	context_set_data((pid_t)pid, argv[2], slen);
 	while (TRUE)
-		sleep(-1);
+	{
+		ft_kill(getpid(), SIGUSR1);
+		usleep(500 * 1000);
+	}
 	return (0);
 }
