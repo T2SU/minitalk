@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 17:34:29 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 17:55:19 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_context	*get_context(void)
 
 	return (&ctx);
 }
+
+#include <stdio.h>
 
 static void	handle_server(int signal, siginfo_t *si, void *uctx)
 {
