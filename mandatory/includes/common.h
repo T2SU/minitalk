@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:51:15 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 14:48:59 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 15:41:28 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,15 @@ t_bool			ft_atoi_strict(const char *str, int *pvalue);
 */
 
 void			ft_kill(const pid_t pid, int signal);
+
+/*
+**  ===========================================
+**      srcs/common/ft_bit.c
+**  ===========================================
+*/
+
+char			ft_getbit(const char *data, int bitindex);
+void			ft_setbit(char *data, int bitindex, char bit);
 
 /*
 **  ===========================================

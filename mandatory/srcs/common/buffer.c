@@ -6,14 +6,14 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 21:12:25 by smun              #+#    #+#             */
-/*   Updated: 2021/07/10 23:49:09 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 15:40:45 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include <stdlib.h>
 
-t_bool	buffer_expand(char **pdata, int current_len, int desired_len)
+t_bool	buffer_expand(char *pdata[], int current_len, int desired_len)
 {
 	char	*new_buffer;
 

@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:06:50 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 14:48:30 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 15:41:47 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	context_reset(t_context *ctx, int opponent)
 
 void	context_append(t_context *ctx, int signal)
 {
-	unsigned char	*pdata;
 	unsigned char	bit;
 	int				current_len;
 	int				required_len;
@@ -40,8 +39,7 @@ void	context_append(t_context *ctx, int signal)
 	required_len = (ctx->data_idx + 8) / 8;
 	if (!buffer_expand(&ctx->data, current_len, required_len))
 		ft_exit(EXIT_FAILURE, "Out of memory");
-	pdata = (unsigned char *)&ctx->data[ctx->data_idx / 8];
-	*pdata |= (unsigned char)(bit << (ctx->data_idx & 7));
+	ft_setbit(ctx->data, ctx->data_idx, bit);
 	context_verbose_print_bit(ctx->data_idx++, bit);
 }
 

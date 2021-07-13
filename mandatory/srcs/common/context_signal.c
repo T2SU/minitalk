@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:36:46 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 15:01:32 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/13 15:41:58 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,18 @@ static void	handle_client(int signal, siginfo_t *si, void *uctx)
 {
 	pid_t		pid;
 	t_context	*ctx;
-	char		temp;
+	char		bit;
 
 	(void)uctx;
 	ctx = get_context();
 	pid = ctx->opponent;
 	if (signal != SIGUSR1 || (si != NULL && pid != si->si_pid))
 		return ;
-	temp = ctx->data[ctx->data_idx / 8];
-	temp = (temp >> (ctx->data_idx & 7)) & 0x01;
-	context_verbose_print_bit((ctx->data_idx)++, temp);
+	bit = ft_getbit(ctx->data, ctx->data_idx);
+	context_verbose_print_bit((ctx->data_idx)++, bit);
 	if (ctx->data_idx / 8 == ctx->data_len)
 		context_on_finish(ctx);
-	if (temp == 1)
+	if (bit == 1)
 		ft_kill(pid, SIGUSR1);
 	else
 		ft_kill(pid, SIGUSR2);
