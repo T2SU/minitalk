@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/31 21:57:41 by smun             ###   ########.fr        #
+#    Updated: 2021/07/31 22:24:26 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ ifeq ($(DEBUG),1)
 endif
 
 INC = -I./includes
+INC_BONUS = -I./includes_bonus
 
 SRC_DIR = srcs/
 SRC_BONUS_DIR = srcs_bonus/
@@ -80,7 +81,11 @@ fclean : clean
 re : fclean all
 
 %.o : %.c
+ifeq ($(MAKECMDGOALS),bonus)
+	$(CC) $(CFLAGS) $(INC_BONUS) -c $< -o $@
+else
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+endif
 
 $(NAME_SERVER) : $(COMMON_FILES_OBJ) $(SVR_FILES_OBJ)
 	rm -rf $@
