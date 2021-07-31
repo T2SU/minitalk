@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:09:35 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 18:19:48 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/31 20:19:51 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,3 @@ t_bool	context_is_opponent_pid(t_context *ctx, siginfo_t *si)
 		return (FALSE);
 	return (TRUE);
 }
-

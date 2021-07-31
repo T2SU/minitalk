@@ -6,7 +6,7 @@
 /*   By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:14:30 by smun              #+#    #+#             */
-/*   Updated: 2021/07/13 16:20:31 by smun             ###   ########.fr       */
+/*   Updated: 2021/07/31 20:19:44 by smun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	print_minitalk(void)
 		":::::..:::::..::........::..::::..::\n");
 }
 
-static void print_client(void)
+static void	print_client(void)
 {
 	ft_putstr("       ____ _ _            _   \n");
 	ft_putstr("      / ___| (_) ___ _ __ | |_ \n");
@@ -42,7 +42,7 @@ static void print_client(void)
 	ft_putstr("                               \n");
 }
 
-static void print_server(void)
+static void	print_server(void)
 {
 	ft_putstr("      ____                           \n");
 	ft_putstr("     / ___|  ___ _ ____   _____ _ __ \n");
@@ -52,7 +52,7 @@ static void print_server(void)
 	ft_putstr("                                     \n");
 }
 
-void		print_title(int mode)
+void	print_title(int mode)
 {
 	print_minitalk();
 	if (mode == kServer)
