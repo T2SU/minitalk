@@ -6,7 +6,7 @@
 #    By: smun <smun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/10 16:44:23 by smun              #+#    #+#              #
-#    Updated: 2021/07/31 22:24:26 by smun             ###   ########.fr        #
+#    Updated: 2021/07/31 23:31:25 by smun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,10 +61,11 @@ CLI_FILES_OBJ = $(CLI_FILES_SRC:.c=.o)
 CLI_FILES_SRC_BONUS = $(addsuffix .c, $(addsuffix _bonus, $(addprefix $(SRC_BONUS_DIR), $(CLI_FILES))))
 CLI_FILES_OBJ_BONUS = $(CLI_FILES_SRC_BONUS:.c=.o)
 
+NAME = minitalk
 NAME_CLIENT = client
 NAME_SERVER = server
 
-all : $(NAME_CLIENT) $(NAME_SERVER)
+all : $(NAME)
 
 bonus : $(COMMON_FILES_OBJ_BONUS) $(SVR_FILES_OBJ_BONUS) $(CLI_FILES_OBJ_BONUS)
 	rm -rf $(NAME_CLIENT) $(NAME_SERVER)
@@ -95,4 +96,6 @@ $(NAME_CLIENT) : $(COMMON_FILES_OBJ) $(CLI_FILES_OBJ)
 	rm -rf $@
 	$(CC) $(CFLAGS) -o $@ $^
 
-.PHONY: all clean fclean re bonus $(NAME_SERVER) $(NAME_CLIENT)
+$(NAME) : $(NAME_SERVER) $(NAME_CLIENT)
+
+.PHONY: all clean fclean re bonus $(NAME_SERVER) $(NAME_CLIENT) $(NAME)
