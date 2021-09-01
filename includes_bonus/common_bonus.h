@@ -114,14 +114,6 @@ void			ft_setbit(char *data, int bitindex, char bit);
 
 /*
 **  ===========================================
-**      srcs/common/context_retrans.c
-**  ===========================================
-*/
-
-void			context_retrans(t_context *ctx);
-
-/*
-**  ===========================================
 **      srcs/common/context_pid.c
 **  ===========================================
 */
